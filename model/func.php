@@ -26,6 +26,18 @@ function addUser($lastname,$firstname,$mi,$username,$password)
 		
 	}
 
+	function selectUser()
+	{
+
+		$db = db();
+		$sql = "SELECT * FROM owners where owner_id = ?";
+		$s = $db->prepare($sql);
+		$s->execute(array());
+		$user = $s->fetchAll();
+		$db = null;
+		return $user;
+	}
+
 	function verifyUser($username)
 	{
 
@@ -37,6 +49,9 @@ function addUser($lastname,$firstname,$mi,$username,$password)
 		$db = null;
 		return $user;
 	}
+
+
+
 function addDiary($diarydatecreated,$diary_label)
 {
 		$db = db();		
@@ -45,6 +60,17 @@ function addDiary($diarydatecreated,$diary_label)
 		$s->execute(array($diarydatecreated,$diary_label));
 		$db = null;
 }
+function deleteDiary($diarydatecreated,$diary_label)
+	{
+	
+
+        $db = db(); 
+		$sql = "DELETE FROM diaries WHERE diary_datecreated = ? and diary_label= ? ";
+		$s = $db->prepare($sql);
+		$s->execute(array($diarydatecreated,$diary_label));
+		$db = null;
+
+	}
 
 
 function verifyDiary($diary_datecreated,$diary_label)
@@ -54,6 +80,18 @@ function verifyDiary($diary_datecreated,$diary_label)
 		$sql = "SELECT * FROM diaries where diary_datecreated = ? and diary_label=?";
 		$s = $db->prepare($sql);
 		$s->execute(array($diary_datecreated,$diary_label));
+		$user = $s->fetchAll();
+		$db = null;
+		return $user;
+	}
+
+	function diaryList()
+	{
+
+		$db = db();
+		$sql = "SELECT * FROM diaries";
+		$s = $db->prepare($sql);
+		$s->execute(array());
 		$user = $s->fetchAll();
 		$db = null;
 		return $user;

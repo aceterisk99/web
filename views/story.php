@@ -5,6 +5,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
+$currentdate=getdate(date("U"));
+
+include_once '../controller/diaryadd_controller.php';
+$viewDiary = diaryList();
+if(isset($_GET['r']))
+{
+	$r=$_GET['r'];
+}
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,10 +30,7 @@ session_start();
 <script src="js/jquery-2.1.1.min.js"></script> 
 <!--icons-css-->
 <link href="css/font-awesome.css" rel="stylesheet"> 
-<!--Google Fonts-->
-<link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
-<!--//skycons-icons-->
+
 </head>
 <body>	
 <div class="page-container">	
@@ -33,13 +39,12 @@ session_start();
             <!--header start here-->
 				<?php  include_once 'headerbar.php'; ?>
 <!--heder end here-->
-<!-- script-for sticky-nav -->
-		
-		<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
     <div class="inbox">
-    	  <h2>Story Details</h2>
+
+    	  <h2><?php echo $r ?></h2>
+    	  
     	 <div class="col-md-4 compose">   	 	
     	 	<div class="mail-profile">
     	 		<div class="mail-pic">
@@ -47,46 +52,91 @@ session_start();
     	 		</div>
     	 		<div class="mailer-name"> 			
     	 				<h5><a href="#"><h5><a href="#"><?php echo $_SESSION['Lastname'].",".$_SESSION['Firstname']; ?></a></h5> </a></h5>  	 				
-    	 			      
+    	 			        
     	 		</div>
     	 	    <div class="clearfix"> </div>
     	 	</div>
+
+    	 		
     	 	<div class="compose-bottom">
-    	 		<ul>
-    	 			<li><a class="hilate" href="#"><i class="fa fa-inbox"> </i>Inbox</a></li>
-    	 			<li><a href="#"><i class="fa fa-envelope-o"> </i>Sent Mail</a></li>
-    	 			<li><a href="#"><i class="fa fa-star-o"> </i>Important</a></li>
-    	 			<li><a href="#"><i class="fa fa-pencil-square-o"> </i>Drafts</a></li>
-    	 			<li><a href="#"><i class="fa fa-trash-o"> </i>Trash</a></li>
-    	 		</ul>
+    	 		  <nav class="nav-sidebar">
+					<ul class="nav tabs">
+			         <br>
+			          <li id="add"><a href="#tab5" data-toggle="tab"><i class="fa fa-trash-o"></i>Add Story</a></li>                              
+					</ul>
+				</nav>
     	 	</div>
-    	 </div>   	 
-    	 	<div class="col-md-8 compose-right">
+    	 </div>
+
+    	 <div class="col-md-8 mailbox-content  tab-content tab-content-in">
+
+    	 	<div class="tab-pane active text-style" id="tab1">
+	    	 	<div class="mailbox-border">
+	               <div class="mail-toolbar clearfix">
+				     <div class="float-left">
+				        <div class="btn btn_1 btn-default mrg5R">
+				           <i class="fa fa-refresh"> </i>
+				        </div>
+				        <div class="btn btn_1 btn-default mrg5R">
+				           <i class="fa fa-trash"> </i>
+				        </div>
+				        <div class="clearfix"> </div>
+				    </div>			    
+	               </div>
+	                <table class="table tab-border" id="1">
+	                    <tbody>
+	                        <tr class="unread checked">
+	                            <td class="hidden-xs">
+	                                <input type="checkbox" class="checkbox">
+	                            </td>
+	                            <td class="hidden-xs">
+	                                <i class="fa fa-star icon-state-warning"> </i>
+	                            </td>
+	                            <td class="hidden-xs">
+	                                Google
+	                            </td>
+	                            <td>
+	                                Lorem Ipsum is simply
+	                            </td>
+	                            <td>
+	                            </td>
+	                            <td>
+	                                12 march
+	                            </td>
+	                        </tr>
+	                        
+	                    </tbody>
+	                </table>
+
+
+
+	               </div>   
+               </div>
+              
+            </div>
+             <div class="col-md-8 compose-right" id="forms">
 					<div class="inbox-details-default">
 						<div class="inbox-details-heading">
-							Compose New Message 
+							Compose New Diary
 						</div>
+
 						<div class="inbox-details-body">
 							<div class="alert alert-info">
-								Please fill details to send a new message
+								Please fill details to continue
 							</div>
-							<form class="com-mail">
-								<input type="text"  value="To :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'To';}">
-								<input type="text"  value="Subject :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}">
+							<form method="POST" action="../controller/diaryadd_controller.php">
+								<div><input type="text"  value="Diary title :" name="diarytitle" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'diarytitle';}">
 								
-								<textarea rows="6"  value="Message :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message </textarea>
-								<div class="form-group">
-									<div class="btn btn-default btn-file">
-										<i class="fa fa-paperclip"> </i> Attachment
-										<input type="file" name="attachment">
-									</div>
 								</div>
-								<input type="submit" value="Send Message"> 
+								<input type="text" name="datecreated" value="<?php echo "$currentdate[month] $currentdate[mday],$currentdate[year]";?>" readonly>
+								<input type="submit" name="compose"> <input type="reset" value="Cancel">
 							</form>
+
 						</div>
+
+
 					</div>
 				</div>
-    	
           <div class="clearfix"> </div>     
    </div>
 </div>
@@ -95,12 +145,12 @@ session_start();
 <!--copy rights start here-->
 <?php
 include_once 'footer.php';
-?>		
+?>	
 <!--COPY rights end here-->
 </div>
 
 <!--slider menu-->
- <?php include_once'sidebar.php';?>
+    <?php include_once'sidebar.php';?>
 	<div class="clearfix"> </div>
 </div>
 
@@ -108,6 +158,22 @@ include_once 'footer.php';
 		<script src="js/scripts.js"></script>
 		<!--//scrolling js-->
 <script src="js/bootstrap.js"> </script>
+
+<script>
+	$(document).ready(function(){
+
+
+$("#forms").hide();
+
+$("#add").click(function(){
+    $("#forms").show();
+    $("#tab1").hide();
+});
+
+	});
+	
+
+</script>
 <!-- mother grid end here-->
 </body>
 </html>

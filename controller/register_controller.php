@@ -17,8 +17,9 @@ if(isset($_POST['register']))
 			header("location:../views/login.php?return=existing");
 		else
 		{
+			$password = md5($password);
 		addUser($lastname,$firstname,$mi,$username,$password);
-		 header("location:../views/signup.php?return=successful");
+		// header("location:../views/signup.php?return=successful");
 			
 		}
 	}

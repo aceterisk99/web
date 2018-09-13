@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include_once '../controller/diaryadd_controller.php';
@@ -40,6 +41,7 @@ $viewDiary = diaryList();
     		  <div class="panel-body">
     		  	  <?php echo $vd["diary_label"]; ?>
     		  </div> 
+              <div class="panel-footer"><a href="story.php?r=<?php echo $vd["diary_label"]; ?>"><h4>View Diary</h4></a></div>
               <div class="panel-footer"><a href="story.php"><h4>View Diary</h4></a></div>
     	</div>  	
 		<?php } ?>
@@ -68,3 +70,7 @@ include_once 'footer.php';
 <!-- mother grid end here-->
 </body>
 </html>
+</html>
+
+
+                      

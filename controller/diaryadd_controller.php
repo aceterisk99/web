@@ -15,7 +15,7 @@ if(isset($_POST['compose']))
 			header("location:../views/inbox-details.php?return=existing");
 		else
 		{
-	     addUser($datecreated,$diarytitle);
+	     addDiary($datecreated,$diarytitle);
 		 header("location:../views/inbox-details.php?return=successful");
 			
 		}
@@ -23,9 +23,20 @@ if(isset($_POST['compose']))
 	else
 	{
 	 header("location:../views/inbox-details.php?return=invalid-input");
-			
+	}
+
 }
 
+if(isset($_POST['delete']))
+{
+		$fname = trim($_POST["efname2"]);
+        $lname =trim($_POST["elname2"]);
+
+         if($fname !="" && $lname !="" && $mname !="" && $address !="" && $email !="" && $phone !="" )
+        {
+            $delete = delete_employee($fname,$lname,$mname);
+            header("location:employee.php");
+        }
 }
 
 

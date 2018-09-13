@@ -1,4 +1,5 @@
 
+
 <?php 
 session_start();
 if($_SESSION['Username']=="")
@@ -71,18 +72,14 @@ include_once 'footer.php';
 <!--slide bar menu end here-->
 <script>
 		$(".unlike").hide();
-
 	$(".like").click(function(){
 		$(".like").hide();
 		$(".unlike").show();
-
 	});
 	$(".unlike").click(function(){
 		$(".like").show();
 		$(".unlike").hide();
-
 	});
-
 </script>
 <!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>

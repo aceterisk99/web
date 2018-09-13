@@ -5,8 +5,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
-$currentdate=getdate(date("U"));
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -41,44 +39,49 @@ $currentdate=getdate(date("U"));
 <!--inner block start here-->
 <div class="inner-block">
     <div class="inbox">
-    	  <h2>Diaries</h2>
+    	  <h2>Profile Details</h2>
     	 <div class="col-md-4 compose">   	 	
     	 	<div class="mail-profile">
     	 		<div class="mail-pic">
     	 			<a href="#"><img src="images/b3.png" alt=""></a>
     	 		</div>
     	 		<div class="mailer-name"> 			
-    	 				<h5><a href="#"><?php echo $_SESSION['Lastname'].",".$_SESSION['Firstname']; ?></a></h5>  	 				
-    	 			       
+    	 				<h5><a href="#"><h5><a href="#"><?php echo $_SESSION['Lastname'].",".$_SESSION['Firstname']; ?></a></h5> </a></h5>  	 				
+    	 			      
     	 		</div>
     	 	    <div class="clearfix"> </div>
     	 	</div>
-    	 	<!-- <div class="compose-bottom">
+    	 	<div class="compose-bottom">
     	 		<ul>
-    	 			<li id="add"><a href="#"><i class="fa fa-trash-o"> </i>Compose</a></li>
+    	 			<li><a class="hilate" href="#"><i class="fa fa-inbox"> </i>Inbox</a></li>
+    	 			<li><a href="#"><i class="fa fa-envelope-o"> </i>Sent Mail</a></li>
+    	 			<li><a href="#"><i class="fa fa-star-o"> </i>Important</a></li>
+    	 			<li><a href="#"><i class="fa fa-pencil-square-o"> </i>Drafts</a></li>
+    	 			<li><a href="#"><i class="fa fa-trash-o"> </i>Trash</a></li>
     	 		</ul>
     	 	</div>
- -->    	 </div>   	 
+    	 </div>   	 
     	 	<div class="col-md-8 compose-right">
 					<div class="inbox-details-default">
 						<div class="inbox-details-heading">
-							Compose New Diary
-						</div>
-
-						<div class="inbox-details-body">
 							<div class="alert alert-info">
-								Please fill details to continue
+								Update Profile
 							</div>
-							<form method="POST" action="../controller/diaryadd_controller.php">
-								<div><input type="text"  placeholder="Diary Title :" name="diarytitle" onfocus="this.placeholder = '';" onblur="if (this.placeholder == '') {this.placeholder = 'Diary Title';}">
+						</div>
+						<div class="inbox-details-body">
+							
+							<form class="com-mail">
+								<input type="text"  value="Lastname :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Lastname';}">
+								<input type="text"  value="Firstname :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Firstname';}">
+								<input type="text"  value="MI :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MI';}">
+								<input type="text"  value="Username :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}">
+								<input type="text"  value="Password :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MI';}">
+
 								
-								</div>
-								<input type="text" name="datecreated" value="<?php echo "$currentdate[month] $currentdate[mday],$currentdate[year]";?>" readonly>
-								<input type="submit" name="compose"> 
+								
+								<input type="submit" name="Update" value="Update"> 
 							</form>
 						</div>
-
-
 					</div>
 				</div>
     	
@@ -90,7 +93,7 @@ $currentdate=getdate(date("U"));
 <!--copy rights start here-->
 <?php
 include_once 'footer.php';
-?>	
+?>		
 <!--COPY rights end here-->
 </div>
 
@@ -104,27 +107,6 @@ include_once 'footer.php';
 		<!--//scrolling js-->
 <script src="js/bootstrap.js"> </script>
 <!-- mother grid end here-->
-
-<!-- <script>
-	$(document).ready(function(){
-
-
-$("#2").hide();
-$("#view").click(function(){
-    $("#1").show();
-$("#2").hide();
-
-});
-
-$("#add").click(function(){
-    $("#2").show();
-    $("#1").hide();
-});
-
-	});
-	
-
-</script> -->
 </body>
 </html>
 

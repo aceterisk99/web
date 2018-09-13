@@ -5,21 +5,14 @@
 		    <div class="menu">
 		      <ul id="menu" >
 		        <li id="menu-home" ><a href="index.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-		        <li><a href="#"><i class="fa fa-cogs"></i><span>Diary</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		          <ul>
-		            
-		            <li><a href="portlet.php">Diaries</a></li>		            
-		          </ul>
+		        
+		        <li><a href="diaries.php"><i class="fa fa-cogs"></i><span>Diaries</span></a>
+		      
 		        </li>
 		       
 		        
 		        
-		        <li><a href="#"><i class="fa fa-envelope"></i><span>Compose</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		        	 <ul id="menu-academico-sub" >
-			            <li id="menu-academico-avaliacoes" ><a href="inbox.php">Stories</a></li>
-			            <li id="menu-academico-boletim" ><a href="inbox-details.php">Compose Diary</a></li>
-			            <li id="menu-academico-boletim" ><a href="story.php">Compose Story</a></li>
-		             </ul>
+		        <li><a href="inbox-details.php"><i class="fa fa-envelope"></i><span>Compose</span></span></a>
 		        </li>
 		         
 		      </ul>
