@@ -89,14 +89,15 @@ if(isset($_GET['r']))
 	                    <tbody>
 	                    	<?php $viewStory = storyList($_SESSION["Id"],$d);
 	                    	 foreach($viewStory as $vs){ ?>
+
 	                        <tr class="unread checked">
-	                            <a href="diaries.php"><td class="hidden-xs">
+	                            <td class="hidden-xs">
 	                                <input type="checkbox" class="checkbox">
 	                            </td>
 	                            <td class="hidden-xs">
 	                                <i class="fa fa-star icon-state-warning"> </i>
 	                            </td>
-	                            <td class="hidden-xs">
+	                            <td class="clickable-row"  data-href="diaries.php">
 	                                	<p style="width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?php echo $vs["story_title"];?></p>
 	                            </td>
 	                            <td >
@@ -108,7 +109,7 @@ if(isset($_GET['r']))
 	                            <td>
 	                               <?php echo $vs["story_date"];?>
 	                            </td>
-	                        </a>
+	                        
 	                        </tr>
 	                        
 	                        
@@ -188,6 +189,11 @@ $("#add").click(function(){
 $(".btns").click(function(){
     $("#forms").hide();
     $("#tab1").show();
+});
+	$(document).ready(function() {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
 });
 
 	});
