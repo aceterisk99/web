@@ -4,15 +4,17 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
-session_start();
 $currentdate=getdate(date("U"));
 
-include_once '../controller/diaryadd_controller.php';
-$viewDiary = diaryList();
+include_once '../controller/story_controller.php';
+
 if(isset($_GET['r']))
 {
 	$r=$_GET['r'];
+	$d=$_GET['d'];
+
 }
+
 
 ?>
 <!DOCTYPE HTML>
@@ -62,7 +64,7 @@ if(isset($_GET['r']))
     	 		  <nav class="nav-sidebar">
 					<ul class="nav tabs">
 			         <br>
-			          <li id="add"><a href="#tab5" data-toggle="tab"><i class="fa fa-trash-o"></i>Add Story</a></li>                              
+			          <li id="add"><a href="#tab5" data-toggle="tab"><i class="fa fa-envelope"></i> Add Story</a></li>                              
 					</ul>
 				</nav>
     	 	</div>
@@ -85,27 +87,33 @@ if(isset($_GET['r']))
 	               </div>
 	                <table class="table tab-border" id="1">
 	                    <tbody>
+	                    	<?php $viewStory = storyList($_SESSION["Id"],$d);
+	                    	 foreach($viewStory as $vs){ ?>
 	                        <tr class="unread checked">
-	                            <td class="hidden-xs">
+	                            <a href="diaries.php"><td class="hidden-xs">
 	                                <input type="checkbox" class="checkbox">
 	                            </td>
 	                            <td class="hidden-xs">
 	                                <i class="fa fa-star icon-state-warning"> </i>
 	                            </td>
 	                            <td class="hidden-xs">
-	                                Google
+	                                	<p style="width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?php echo $vs["story_title"];?></p>
+	                            </td>
+	                            <td >
+	                                	<p style="width: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; "><?php echo $vs["story_content"];?> </p>
+	                            
 	                            </td>
 	                            <td>
-	                                Lorem Ipsum is simply
 	                            </td>
 	                            <td>
+	                               <?php echo $vs["story_date"];?>
 	                            </td>
-	                            <td>
-	                                12 march
-	                            </td>
+	                        </a>
 	                        </tr>
 	                        
+	                        
 	                    </tbody>
+	                <?php }?>
 	                </table>
 
 
@@ -117,21 +125,29 @@ if(isset($_GET['r']))
              <div class="col-md-8 compose-right" id="forms">
 					<div class="inbox-details-default">
 						<div class="inbox-details-heading">
-							Compose New Diary
+							Compose New Story
 						</div>
 
 						<div class="inbox-details-body">
 							<div class="alert alert-info">
 								Please fill details to continue
 							</div>
-							<form method="POST" action="../controller/diaryadd_controller.php">
-								<div><input type="text"  value="Diary title :" name="diarytitle" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'diarytitle';}">
-								
+							<form method="POST" action="../controller/story_controller.php">
+								<div><input type="text" value="<?php echo $d ?>" name="diaryid" hidden></div>
+								<div><input type="text"  placeholder="Story Title :" name="storytitle" onfocus="this.placeholder = '';" onblur="if (this.placeholder == '') {this.placeholder = 'Story Title';}">
 								</div>
-								<input type="text" name="datecreated" value="<?php echo "$currentdate[month] $currentdate[mday],$currentdate[year]";?>" readonly>
-								<input type="submit" name="compose"> <input type="reset" value="Cancel">
-							</form>
+								<div>
+									<input type="date" class="form-control" name="storydate" required>
+								</div>
+								<br>
+								<div><textarea rows="6"  placeholder="Dear Diary :" name="storycontent" onfocus="this.placeholder = '';" onblur="if (this.placeholder == '') {this.placeholder = 'Dear Diary,';}"></textarea>
+								</div>
+								<input type="text" value="<?php echo $r?>" name="diarytitle" hidden>
+								<input type="text" value="<?php echo $d?>" name="diaryid" hidden>
 
+								<input class="float-left" type="submit" name="compose">
+							</form>
+ <button class="btns float-right" >Cancel</button>
 						</div>
 
 
@@ -168,6 +184,10 @@ $("#forms").hide();
 $("#add").click(function(){
     $("#forms").show();
     $("#tab1").hide();
+});
+$(".btns").click(function(){
+    $("#forms").hide();
+    $("#tab1").show();
 });
 
 	});

@@ -1,8 +1,8 @@
 
 <?php
-session_start();
+
 include_once '../controller/diaryadd_controller.php';
-$viewDiary = diaryList();
+
 
 ?>
 <!DOCTYPE HTML>
@@ -41,8 +41,8 @@ $viewDiary = diaryList();
     		  <div class="panel-body">
     		  	  <?php echo $vd["diary_label"]; ?>
     		  </div> 
-              <div class="panel-footer"><a href="story.php?r=<?php echo $vd["diary_label"]; ?>"><h4>View Diary</h4></a></div>
-              <div class="panel-footer"><a href="story.php"><h4>View Diary</h4></a></div>
+              <div class="panel-footer"><a href="story.php?r=<?php echo $vd["diary_label"]; ?>&&d=<?php  echo $vd ["diary_id"]; ?>"><h4>View Diary</h4></a></div>
+              
     	</div>  	
 		<?php } ?>
 		<div class="clearfix"> </div>

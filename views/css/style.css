@@ -2401,6 +2401,7 @@ ul.nav.tabs li a span {
     padding:0.8em 1.5em;
     margin-top: 1em;
         outline: none;
+        width:90px;
 }
 .compose-right input[type="submit"]:hover {
 	background-color: #FC8213;
@@ -2412,6 +2413,17 @@ ul.nav.tabs li a span {
 .compose-right {
     padding: 0px;
 }
+.btns {
+font-size: 0.9em;
+    background-color:red;
+    border:none;
+    color: #fff;
+    padding:0.8em 1.5em;
+    margin-top: 1em;
+        outline: none;
+        width:90px;
+}
+
 /*--inbox details--*/
 /*--product start here--*/
 .product-items {

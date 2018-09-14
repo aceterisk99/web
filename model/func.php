@@ -52,12 +52,12 @@ function addUser($lastname,$firstname,$mi,$username,$password)
 
 
 
-function addDiary($diarydatecreated,$diary_label)
+function addDiary($owner_id,$diarydatecreated,$diary_label)
 {
 		$db = db();		
-		$sql = "INSERT INTO diaries (diary_datecreated,diary_label) VALUES (?,?)";
+		$sql = "INSERT INTO diaries (owner_id,diary_datecreated,diary_label) VALUES (?,?,?)";
 		$s=$db->prepare($sql);
-		$s->execute(array($diarydatecreated,$diary_label));
+		$s->execute(array($owner_id,$diarydatecreated,$diary_label));
 		$db = null;
 }
 function deleteDiary($diarydatecreated,$diary_label)
@@ -73,29 +73,62 @@ function deleteDiary($diarydatecreated,$diary_label)
 	}
 
 
-function verifyDiary($diary_datecreated,$diary_label)
+function verifyDiary($ownerId,$diary_label)
 	{
 
 		$db = db();
-		$sql = "SELECT * FROM diaries where diary_datecreated = ? and diary_label=?";
+		$sql = "SELECT * FROM diaries where owner_id = ? and diary_label=?";
 		$s = $db->prepare($sql);
-		$s->execute(array($diary_datecreated,$diary_label));
+		$s->execute(array($ownerId,$diary_label));
 		$user = $s->fetchAll();
 		$db = null;
 		return $user;
 	}
 
-	function diaryList()
+	function diaryList($id)
 	{
 
 		$db = db();
-		$sql = "SELECT * FROM diaries";
+		$sql = "SELECT * FROM diaries where owner_id = ?";
 		$s = $db->prepare($sql);
-		$s->execute(array());
+		$s->execute(array($id));
 		$user = $s->fetchAll();
 		$db = null;
 		return $user;
 	}
+function addStory($diary_id,$story_date,$owner_id,$story_title,$story_content)
+{
+		$db = db();		
+		$sql = "INSERT INTO stories (diary_id,story_date,owner_id,story_title,story_content) VALUES (?,?,?,?,?)";
+		$s=$db->prepare($sql);
+		$s->execute(array($diary_id,$story_date,$owner_id,$story_title,$story_content));
+		$db = null;
+}
+
+function verifyStory($diary_id,$story_date,$ownerId,$story_title)
+	{
+
+		$db = db();
+		$sql = "SELECT * FROM diaries where diary_id = ? and story_date=? and owner_id=? and story_title=?";
+		$s = $db->prepare($sql);
+		$s->execute(array($diary_id,$story_date,$ownerId,$story_title));
+		$user = $s->fetchAll();
+		$db = null;
+		return $user;
+	}
+
+	function storyList($owner_id,$diary_id)
+	{
+
+		$db = db();
+		$sql = "SELECT * FROM stories where owner_id = ? and diary_id=?";
+		$s = $db->prepare($sql);
+		$s->execute(array($owner_id,$diary_id));
+		$user = $s->fetchAll();
+		$db = null;
+		return $user;
+	}
+
 
 /*function viewDiary()
 	{

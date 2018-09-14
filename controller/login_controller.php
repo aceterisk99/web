@@ -6,7 +6,7 @@ if(isset($_POST['login']))
 {
 
 	$username=trim($_POST['username']);
-	$password=trim($_POST['password']);
+	$password=base64_encode(trim($_POST['password']));
 	
 	if($username!="" && $password!="")
 	{
