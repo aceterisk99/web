@@ -63,10 +63,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!--inner block end here-->
 <!--copy rights start here-->
-<div class="copyrights">
+<!-- <div class="copyrights">
 	 <p>© 2016 Shoppy. All Rights Reserved</p>
 </div>	
-<!--COPY rights end here-->
+ --><!--COPY rights end here-->
 
 <!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>

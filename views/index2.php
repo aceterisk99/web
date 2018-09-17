@@ -1,4 +1,6 @@
-
+<?php
+include_once '../model/func.php';
+?>
 
 
 
@@ -76,116 +78,29 @@
 
 
 <!--heder end here-->
-
+<div class="inner-block">
 <div class="portlet-grid-page">  
     			<br>
+    			<?php  $view=pubstory();
+
+    			 foreach($view as $key){
+    			 ?>
     	<div class="portlet-grid panel-primary"> 
     		 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 1</h3>
+    		      <h3 class="panel-title"><?php echo $key['story_title']; ?></h3>
     		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
+    		  <div class="panel-body"><?php echo $key['story_content']; ?>
     		  </div> 
-    		  <div class="reaction">
-
+    		  <div class="panel-footer">
+           <div class="float-right">Likes : <?php echo $key['likes']; ?></div>
     		  </div>
+    		  
+    		  </div>
+			<?php }?>
+    		  
     	</div>  	
-		<div class="portlet-grid panel-success">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 2</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-info">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 3</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-warning">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 4</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-danger">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 5</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam. 
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-default">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Portlet 6</h3>
-		  </div>
-		  <div class="panel-body">
-		          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
-		  </div>
-		</div>
-		<div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 7</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam. 
-    		  </div> 
-    	</div>  	
-		<div class="portlet-grid panel-success">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 9</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam. 
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-warning">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 4</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-danger">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 5</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam. 
-    		  </div>
-		</div>
-		<div class="portlet-grid panel-default">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Portlet 6</h3>
-		  </div>
-		  <div class="panel-body">
-		          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
-		  </div>
-		</div>
-		<div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 7</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam. 
-    		  </div> 
-    	</div>  	
-		<div class="portlet-grid panel-success">
-			 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 9</h3>
-    		  </div> 
-    		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam. 
-    		  </div>
-		</div>
+		
+		
 
 		
 		<div class="clearfix"> </div>
@@ -195,9 +110,9 @@
 <!--copy rights start here-->
 
 
-<?php
-include_once 'footer.php';
-?>	
+<!-- <?php
+/*include_once 'footer.php';*/
+?> -->	
 <!--COPY rights end here-->
 
 </div>

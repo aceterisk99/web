@@ -3,6 +3,20 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+$exist="";
+$invalid="";
+
+if(isset($_GET["return"]))
+{
+	$exist =trim($_GET["return"]);
+}
+if(isset($_GET["invalid"]))
+{
+	$invalid="Invalid Diary Title";
+}	
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,10 +37,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--Google Fonts-->
 <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
-<!--//charts-->
+<!--SWEET ALERT-->
+<link href="css/sweetalert.css" rel="stylesheet">
+
 </head>
 <body>	
 <!--inner block start here-->
+<input type="text" id="exist" value="<?php echo $exist; ?>" hidden>
+<input type="text" id="invalid" value="<?php echo $invalid; ?>" hidden>
 <div class="signup-page-main">
      <div class="signup-main">  	
     	 <div class="signup-head">
@@ -54,16 +72,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--inner block end here-->
 <!--copy rights start here-->
-<div class="copyrights">
+<!-- <div class="copyrights">
 	 <p>© 2016 Shoppy. All Rights Reserved</a> </p>
-</div>	
+</div> -->	
 <!--COPY rights end here-->
 <!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>
 		<script src="js/scripts.js"></script>
 		<!--//scrolling js-->
 <script src="js/bootstrap.js"> </script>
+<script src="js/jquery.sweet-alert.js"> </script>
+<script src="js/sweetalert.min.js"> </script>
+<script src="js/sweetalert-dev.js"> </script>
+
 <!-- mother grid end here-->
+
+ <script>
+var exist= $("#exist").val();
+var invalid = $("invalid").val();
+
+
+if(exist!="")
+{
+	if(exist=='existing')
+	{
+	swal("Username Already Exist!"); 
+     }
+     else if(exist=='successful')
+
+   {
+	swal("Account created!");
+    }
+    else{
+	swal("Please Fill All Fields!");
+
+    }
+
+}
+
+
+
+
+</script> 
 </body>
 </html>
 

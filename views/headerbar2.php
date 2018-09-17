@@ -6,13 +6,7 @@
 									<!--<img id="logo" src="" alt="Logo"/>--> 
 								  </a> 								
 							</div>
-							<!--search-box-->
-								<div class="search-box">
-									
-										<input type="text" id="myInput" placeholder="Search...">	
-													
-									
-								</div><!--//end-search-box-->
+							
 							<div class="clearfix"> </div>
 						 </div>
 						 <div class="header-right">

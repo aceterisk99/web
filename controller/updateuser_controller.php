@@ -1,7 +1,7 @@
 <?php
 include_once '../model/func.php';
-
-if(isset($_POST['register']))
+session_start();
+if(isset($_POST['update']))
 {
 	$lastname=trim($_POST['lastname']);
 	$firstname=trim($_POST['firstname']);
@@ -12,20 +12,15 @@ if(isset($_POST['register']))
 	if($username!="" && $password!="" && $lastname!="" && $firstname!="" && $mi!="")
 	{
 
-		$verifyUser=verifyUser($username);
-		if(count($verifyUser) > 0)
-			header("location:../views/signup.php?return=existing");
-		else
-		{
 			$password = base64_encode($password);
-			addUser($lastname,$firstname,$mi,$username,$password);
-		 header("location:../views/signup.php?return=successful");
+			updateUser($_SESSION['Id'],$lastname,$firstname,$mi,$username,$password);
+		 header("location:../views/extra.php?return=successful");
 			
-		}
+		
 	}
 	else
 	{
-	header("location:../views/signup.php?return=invalidinput");
+	header("location:../views/extra.php?return=invalidinput");
 }
 
 }

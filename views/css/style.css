@@ -1704,7 +1704,8 @@ p.grid1 {
     font-size: 2em;
      margin-bottom: 1em;
 }
-.typo-badges h3 {
+.typo-badges h3 
+{
     font-size: 2em;
      margin-bottom: 1em;
 }
@@ -2413,16 +2414,8 @@ ul.nav.tabs li a span {
 .compose-right {
     padding: 0px;
 }
-.btns {
-font-size: 0.9em;
-    background-color:red;
-    border:none;
-    color: #fff;
-    padding:0.8em 1.5em;
-    margin-top: 1em;
-        outline: none;
-        width:90px;
-}
+
+
 
 /*--inbox details--*/
 /*--product start here--*/
@@ -4731,5 +4724,9 @@ ul.dropdown-menu {
 }
 .b_tooltip {
     padding: 4px 7px 7px 7px;
+}
+.inbox-details-body input[type="password"] {   
+    font-size: 0.8em;
+    height: 33px;
 }
 }

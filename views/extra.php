@@ -5,6 +5,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
+include_once '../model/func.php';
+$id=$_SESSION['Id'];
+$user=getUser($id);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -51,15 +54,6 @@ session_start();
     	 		</div>
     	 	    <div class="clearfix"> </div>
     	 	</div>
-    	 	<div class="compose-bottom">
-    	 		<ul>
-    	 			<li><a class="hilate" href="#"><i class="fa fa-inbox"> </i>Inbox</a></li>
-    	 			<li><a href="#"><i class="fa fa-envelope-o"> </i>Sent Mail</a></li>
-    	 			<li><a href="#"><i class="fa fa-star-o"> </i>Important</a></li>
-    	 			<li><a href="#"><i class="fa fa-pencil-square-o"> </i>Drafts</a></li>
-    	 			<li><a href="#"><i class="fa fa-trash-o"> </i>Trash</a></li>
-    	 		</ul>
-    	 	</div>
     	 </div>   	 
     	 	<div class="col-md-8 compose-right">
 					<div class="inbox-details-default">
@@ -69,18 +63,21 @@ session_start();
 							</div>
 						</div>
 						<div class="inbox-details-body">
+							<?php foreach ($user as $gu){ ?>
+								
 							
-							<form class="com-mail">
-								<input type="text"  value="Lastname :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Lastname';}">
-								<input type="text"  value="Firstname :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Firstname';}">
-								<input type="text"  value="MI :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MI';}">
-								<input type="text"  value="Username :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}">
-								<input type="text"  value="Password :" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'MI';}">
+							<form method="POST" action="../controller/updateuser_controller.php">
+								<input type="text" name="lastname" value="<?php echo $gu['owner_lastname']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_lastname']?>';}">
+								<input type="text" name="firstname" value="<?php echo $gu['owner_firstname']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_firstname']?>';}">
+								<input type="text" name="mi" value="<?php echo $gu['owner_mi']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_mi']?>';}">
+								<input type="text" name="username" value="<?php echo $gu['owner_username']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_username']?>';}">
+								<input type="password" name="password" value="<?php echo base64_decode($gu['owner_password'])?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo base64_decode($gu['owner_password'])?>;}">
 
 								
 								
-								<input type="submit" name="Update" value="Update"> 
+								<input type="submit" name="update" value="Update"> 
 							</form>
+							<?php } ?>
 						</div>
 					</div>
 				</div>

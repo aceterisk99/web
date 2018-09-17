@@ -1,0 +1,61 @@
+.btnss{
+  font-size: 0.9em;
+    background-color:red;
+    border:none;
+    color: #fff;
+    padding:0.8em 1.5em;
+    margin-top: 1em;
+        outline: none;
+        width:90px;
+}
+.btnup{
+    font-size: 0.9em;
+    background-color: #68AE00;
+    border:none;
+    color: #fff;
+    padding:0.8em 1.5em;
+    margin-top: 1em;
+        outline: none;
+        width:90px;
+}
+.btnup:hover {
+	background-color: #FC8213;
+	transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+}
+.btns {
+font-size: 0.9em;
+    background-color:red;
+    border:none;
+    color: #fff;
+    padding:0.8em 1.5em;
+    margin-top: 1em;
+        outline: none;
+        width:90px;
+}
+.sub{
+    font-size: 0.9em;
+    background-color: #68AE00;
+    border:none;
+    color: #fff;
+    padding:0.8em 1.5em;
+    margin-top: 1em;
+        outline: none;
+        width:90px;
+}
+.sub:hover {
+	background-color: #FC8213;
+	transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+}
+tr:hover{
+	background-color: #FC8213;
+	transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -o-transition: 0.5s all;
+}

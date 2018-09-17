@@ -13,17 +13,23 @@ if(isset($_POST['compose']))
 	$owner_id=$_SESSION['Id'];
 	$diarytitle=trim($_POST['diarytitle']);
 	$diaryid=trim($_POST['diaryid']);
+	$privacy=trim($_POST['privacy']);
+
 
 	
 	if($storytitle!="" && $storydate!="" && $storycontent!="")
 	{
 
 		$verifyStory=verifyStory($diary_id,$storydate,$owner_id,$storytitle);
-		if(count($verifyStory) > 0)
-			header("location:../views/story.php?return=existing");
+		
+
+		if(count($verifyStory)> 0 )
+		{
+			header("location:../views/story.php?return=existing&&r=".$diarytitle."&&d=".$diaryid);
+		}
 		else
 		{
-	     addStory($diary_id,$storydate,$owner_id,$storytitle,$storycontent);
+	     addStory($diary_id,$storydate,$owner_id,$storytitle,$storycontent,$privacy);
 		 header("location:../views/story.php?return=successful&&r=".$diarytitle."&&d=".$diaryid);
 			
 		}
@@ -35,18 +41,43 @@ if(isset($_POST['compose']))
 
 }
 
-if(isset($_POST['delete']))
+if(isset($_POST['update']))
 {
-		$fname = trim($_POST["efname2"]);
-        $lname =trim($_POST["elname2"]);
+	$storytitle=trim($_POST['storytitles']);
+	$storydate=trim($_POST['storydates']);
+	$storycontent=trim($_POST['storycontents']);
+	$diary_id=trim($_POST['diaryids']);
+	$owner_id=$_SESSION['Id'];
+	$diarytitle=trim($_POST['diarytitles']);
+	$diaryid=trim($_POST['diaryids']);
+	$story_id=trim($_POST['story_idss']);
+	$privacy=trim($_POST['privacy2']);
 
-         if($fname !="" && $lname !="" && $mname !="" && $address !="" && $email !="" && $phone !="" )
-        {
-            $delete = delete_employee($fname,$lname,$mname);
-            header("location:employee.php");
-        }
+
+
+	
+	if($storytitle!="" && $storydate!="" && $storycontent!="")
+	{
+
+		$verifyStory=verifyStory($diary_id,$storydate,$owner_id,$storytitle);
+		
+
+		if(count($verifyStory)> 1 ){
+			header("location:../views/story.php?return=existing&&r=".$diarytitle."&&d=".$diaryid);
+		}
+		else
+		{
+	     updateStory($diary_id,$storydate,$owner_id,$storytitle,$storycontent,$privacy,$story_id);
+		 header("location:../views/story.php?return=successful&&r=".$diarytitle."&&d=".$diaryid);
+			
+		}
+	}
+	else
+	{
+	 header("location:../views/story.php?return=invalid&&r=".$diarytitle."&&d=".$diaryid);
+	}
+
 }
-
 
 
 

@@ -2,6 +2,7 @@
 
 <?php 
 session_start();
+include_once '../model/func.php';
 if($_SESSION['Username']=="")
 {
 	header("location:index2.php");
@@ -42,26 +43,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="inner-block">
     <div class="portlet-grid-page">  
     	<h2>Public Stories</h2>	
+
+   <?php $view = pubstory(); 
+      if(count($view) > 0)
+      {
+      	foreach ($view as $key ) {
+    ?>
     	<div class="portlet-grid panel-primary"> 
     		 <div class="panel-heading">
-    		      <h3 class="panel-title">Portlet 1</h3> 
+    		      <h3 class="panel-title"><?php echo $key['story_title']; ?></h3> 
     		  </div> 
     		  <div class="panel-body">
-    		  	  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.
+    		  	  <?php echo $key['story_content']; ?>
     		  </div> 
-    		  <button class="like glyphicon glyphicon-ok" style="border: none; background-color: white"></button><button class="unlike glyphicon glyphicon-remove" style="border: none; background-color: white"></button>
+    		  <div class="panel-footer">
+
+               <?php   $verify = confirmliker($_SESSION['Id'],$key['story_id']);
+               if(count($verify) == 0) { ?>
+    		 <a href="../controller/like.php?story_id=<?php echo $key['story_id']; ?>"><button class="btn btn-default glyphicon glyphicon-star-empty"><span>&nbsp;Like</span></button></a>
+
+         <?php } else { ?>
+    		 <a href="../controller/unlike.php?story_id=<?php echo $key['story_id']; ?>"><button class="btn btn-default glyphicon glyphicon-star"><span>&nbsp;unlike</span></button></a>
+         <?php } ?>
 
 
-    	</div>  	
+           <div class="float-right">likes : <?php echo $key['likes']; ?></div>
+
+    	</div>
+    		  
+    	</div> 
+    	
+  <?php } } ?>
 		
 		<div class="clearfix"> </div>
   </div>
 </div>
+
 <!--inner block end here-->
 <!--copy rights start here-->
-<?php
-include_once 'footer.php';
-?>	
+<!-- <?php
+/*include_once 'footer.php';*/
+?>	 -->
 <!--COPY rights end here-->
 </div>
 </div>
@@ -80,6 +102,20 @@ include_once 'footer.php';
 		$(".like").show();
 		$(".unlike").hide();
 	});
+
+///////////SEARCH
+
+ $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".portlet-grid").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+
+
+////////////END SEARCH
+
 </script>
 <!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>
