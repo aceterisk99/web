@@ -138,7 +138,7 @@ if(exist!="")
 {
 	if(exist=='existing')
 	{
-	swal("Diary Existing!"); 
+	swal("Title Existing!"); 
      }
      else if(exist=='successful')
 
@@ -151,6 +151,7 @@ if(exist!="")
     }
 
 }
+
 
 
 

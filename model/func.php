@@ -92,13 +92,13 @@ function deleteDiary($id)
 	}
 
 
-function verifyDiary($ownerId,$diary_datecreated,$diary_label)
+function verifyDiary($ownerId,$diary_label)
 	{
 
 		$db = db();
-		$sql = "SELECT * FROM diaries where owner_id = ? and diary_datecreated=? and diary_label=?";
+		$sql = "SELECT * FROM diaries where owner_id = ? and diary_label = ?";
 		$s = $db->prepare($sql);
-		$s->execute(array($ownerId,$diary_datecreated,$diary_label));
+		$s->execute(array($ownerId,$diary_label));
 		$user = $s->fetchAll();
 		$db = null;
 		return $user;
@@ -126,6 +126,8 @@ function verifyDiary($ownerId,$diary_datecreated,$diary_label)
 		$db = null;
 		return $user;
 	}
+
+
 function addStory($diary_id,$story_date,$owner_id,$story_title,$story_content,$status)
 {
 		$db = db();		
@@ -135,28 +137,41 @@ function addStory($diary_id,$story_date,$owner_id,$story_title,$story_content,$s
 		$db = null;
 }
 
-function verifyStory($diary_id,$story_date,$ownerId,$story_title)
+function verifyStory($ownerId,$story_title)
 	{
 
 		$db = db();
-		$sql = "SELECT * FROM stories where diary_id = ? and story_date=? and owner_id=? and story_title=?";
+		$sql = "SELECT * FROM stories where owner_id=? and story_title=?";
 		$s = $db->prepare($sql);
-		$s->execute(array($diary_id,$story_date,$ownerId,$story_title));
+		$s->execute(array($ownerId,$story_title));
 		$user = $s->fetchAll();
 		$db = null;
 		return $user;
 	}
+
 	function verifyStoryDate($story_date)
 	{
 
 		$db = db();
-		$sql = "SELECT * FROM diaries where story_date=?";
+		$sql = "SELECT * FROM stories where story_date=?";
 		$s = $db->prepare($sql);
 		$s->execute(array($story_date));
 		$user = $s->fetchAll();
 		$db = null;
 		return $user;
 	}
+	function verifyUsername($username)
+	{
+
+		$db = db();
+		$sql = "SELECT * FROM owners where owner_username=?";
+		$s = $db->prepare($sql);
+		$s->execute(array($username));
+		$user = $s->fetchAll();
+		$db = null;
+		return $user;
+	}
+
 	function verifyStoryTitle($story_title)
 	{
 
@@ -193,6 +208,16 @@ function verifyStory($diary_id,$story_date,$ownerId,$story_title)
 		$db = null;
 		return $user;
 	}
+
+function deleteStory($story_id)
+	{
+        $db = db(); 
+		$sql = "DELETE FROM stories where story_id= ?";
+		$s = $db->prepare($sql);
+		$s->execute(array($story_id));
+		$db = null;
+	}
+
 function updateDiary($title,$id)
 	{
 		$db = db();

@@ -11,11 +11,17 @@ if(isset($_POST['update']))
 	
 	if($username!="" && $password!="" && $lastname!="" && $firstname!="" && $mi!="")
 	{
-
+		$verifyUsername=verifyUsername($username);
+		if(count($verifyUsername)> 0)
+		{
+		 header("location:../views/extra.php?return=existing");
+		}
+		else
+		{
 			$password = base64_encode($password);
 			updateUser($_SESSION['Id'],$lastname,$firstname,$mi,$username,$password);
 		 header("location:../views/extra.php?return=successful");
-			
+		}
 		
 	}
 	else

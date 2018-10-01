@@ -71,10 +71,10 @@ $user=getUser($id);
 								<input type="text" name="firstname" value="<?php echo $gu['owner_firstname']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_firstname']?>';}">
 								<input type="text" name="mi" value="<?php echo $gu['owner_mi']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_mi']?>';}">
 								<input type="text" name="username" value="<?php echo $gu['owner_username']?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo $gu['owner_username']?>';}">
-								<input type="password" name="password" value="<?php echo base64_decode($gu['owner_password'])?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo base64_decode($gu['owner_password'])?>;}">
+								<input type="password" class="form-control" name="password" value="<?php echo base64_decode($gu['owner_password'])?>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '<?php echo base64_decode($gu['owner_password'])?>';}">
 
 								
-								
+								<br>
 								<input type="submit" name="update" value="Update"> 
 							</form>
 							<?php } ?>

@@ -1,6 +1,8 @@
 <?php
-session_start();
 include_once '../model/func.php';
+include_once 'diary_update.php';
+
+
 
 
 
@@ -15,15 +17,11 @@ if(isset($_POST['compose']))
 	$diaryid=trim($_POST['diaryid']);
 	$privacy=trim($_POST['privacy']);
 
-
-	
 	if($storytitle!="" && $storydate!="" && $storycontent!="")
 	{
-
-		$verifyStory=verifyStory($diary_id,$storydate,$owner_id,$storytitle);
-		
-
-		if(count($verifyStory)> 0 )
+		$verifyStory=verifyStory($owner_id,$storytitle);
+		$verifyStoryDate=verifyStoryDate($storydate);
+		if(count($verifyStory)> 0 or count($verifyStoryDate)> 0)
 		{
 			header("location:../views/story.php?return=existing&&r=".$diarytitle."&&d=".$diaryid);
 		}
@@ -31,15 +29,19 @@ if(isset($_POST['compose']))
 		{
 	     addStory($diary_id,$storydate,$owner_id,$storytitle,$storycontent,$privacy);
 		 header("location:../views/story.php?return=successful&&r=".$diarytitle."&&d=".$diaryid);
-			
 		}
+
+
 	}
 	else
 	{
 	 header("location:../views/story.php?return=invalid-input");
 	}
-
 }
+
+
+
+
 
 if(isset($_POST['update']))
 {

@@ -11,7 +11,7 @@ if(isset($_POST['compose']))
 	if($datecreated!="" && $diarytitle!="")
 	{
 
-		$verifyDiary=verifyDiary($owner_id,$datecreated,$diarytitle);
+		$verifyDiary=verifyDiary($owner_id,$diarytitle);
 
 		if(count($verifyDiary) > 0)
 		{

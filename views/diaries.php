@@ -32,6 +32,8 @@ include_once '../controller/diaryadd_controller.php';
 <!--inner block start here-->
 <div class="inner-block">
     <div class="portlet-grid-page" id="1">  
+                  
+      <br>
     	<h2>Your Diaries</h2>	
              <?php foreach($viewDiary as $vd){ ?>
     	<div class="portlet-grid panel-primary"> 
@@ -45,6 +47,7 @@ include_once '../controller/diaryadd_controller.php';
               
     	</div>  	
 		<?php } ?>
+
 		<div class="clearfix"> </div>
   </div>
 </div>
@@ -54,6 +57,7 @@ include_once '../controller/diaryadd_controller.php';
 /*include_once 'footer.php';*/
 ?>	
 <!--COPY rights end here-->
+</div>
 </div>
 </div>
 <!--slider menu-->
@@ -69,12 +73,15 @@ include_once '../controller/diaryadd_controller.php';
 <script src="js/bootstrap.js"> </script>
 <!-- mother grid end here-->
 <script type="text/javascript">
+
    $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $(".portlet-grid").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
+
+  
 </script>
 </body>
 </html>

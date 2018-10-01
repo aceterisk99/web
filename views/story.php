@@ -9,11 +9,11 @@ include_once '../model/func.php';
 include_once '../controller/story_controller.php';
 include_once '../controller/diary_update.php';
 
-
 if(isset($_GET['r']))
 {
-	$r=$_GET['r'];
-	$d=$_GET['d'];
+	$r=$_GET['r'];//ownerid
+	$d=$_GET['d'];//diaryid
+	
 
 }
 
@@ -41,6 +41,16 @@ if(isset($_GET["invalid"]))
 <!DOCTYPE HTML>
 <html>
 <head>
+	<style>
+	.btn{
+		border-color: none;
+		 background-color: #FC8213; /* Blue background */
+    color: white; 
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer; 
+	}
+</style>
 <title>Diary</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -109,18 +119,21 @@ if(isset($_GET["invalid"]))
     	 </div>
 
     	 <div class="col-md-8 mailbox-content  tab-content tab-content-in">
+          <form method="post" action="../controller/deleteall.php">
 
-    	 	<div class="tab-pane active text-style" id="tab1">
-	    	 	<div class="mailbox-border">
-	               <div class="mail-toolbar clearfix">
-				     <div class="float-left">
-				        
-				        <div class="btn btn_1 btn-default mrg5R">
-				           <i class="fa fa-trash"> </i>
-				        </div>
+	                	 <div class="mail-toolbar clearfix">
+				     <div class="deleteall float-left" hidden >
+				       	 
+				          			<button type="submit" name="deleteall" id="deleteall" class="btn"><i class="fa fa-trash"> </i></button>
+				       	
 				        <div class="clearfix"> </div>
 				    </div>			    
 	               </div>
+
+<br>
+    	 	<div class="tab-pane active text-style" id="tab1">
+	    	 	<div class="mailbox-border">
+
 	               <!-- VIEW STORY FORM -->
 	                <table class="table tab-border" id="1">
 	                    <tbody>
@@ -130,12 +143,8 @@ if(isset($_GET["invalid"]))
 	                        <tr class="unread checked">
                             
 	                            <td class="hidden-xs">
-	                                <input type="checkbox" class="checkbox">
+	                                <input type="checkbox" class="checkbox" name="checkbox[]" value="<?php echo $vs["story_id"];?>">
 	                            </td>
-	                            <td class="hidden-xs">
-	                                <i class="fa fa-star icon-state-warning"> </i>
-	                            </td>
-
 	                            <td class="clickable-row">
 	                            
 	                            	    <button class="create" hidden="">this</button>
@@ -149,9 +158,10 @@ if(isset($_GET["invalid"]))
 	                            
 	                            </td>
 	                            <td>
+	                               <?php echo $vs["story_date"];?>
 	                            </td>
 	                            <td>
-	                               <?php echo $vs["story_date"];?>
+	                            	<p><?php echo $vs["status"]?></p>
 	                            </td>
 	                        
 	                        </tr>
@@ -163,9 +173,20 @@ if(isset($_GET["invalid"]))
 	                </table>
 	               <!-- VIEW STORY FORM -->
 
-            <!-- //////////////////////UPDATE FORM\\\\\\\\\\\\\\\\\\\\\\\ -->
+               </form>
 
+
+            <!-- //////////////////////UPDATE FORM\\\\\\\\\\\\\\\\\\\\\\\ -->
 	                <div class="inbox-details-body" id="updateforms">
+
+	                <div class="mail-toolbar clearfix">
+				     <div class="float-left">
+				       	 <a href="../controller/deleteStory.php?r=<?php echo $r?>&&d=<?php echo $d ?>&&story_id=<?php echo $story_id; ?>">	 <div class="btn btn_1 btn-default mrg5R" id="del">
+				          			<i class="fa fa-trash"> </i>
+				       		 </div></a>
+				        <div class="clearfix"> </div>
+				    </div>			    
+	               </div>
 							<div class="alert alert-info">
 								Please fill details to continue
 							</div>
@@ -173,7 +194,6 @@ if(isset($_GET["invalid"]))
 								<?php $storys = storyRender($story_id); 
                                    foreach ($storys as $key) {                         
 								?>
-							
 								<div>
 									<input type="text" class="form-control" name="storytitles" value="<?php echo $key['story_title']; ?>" required>
 								</div>
@@ -194,35 +214,28 @@ if(isset($_GET["invalid"]))
 									<?php } else { ?>
 										<option value="private">private</option>
 										<option value="public" selected="">public</option>
-
 									<?php }  ?>
-
-
 									</select>
 								</div>
-
-							
 								<input class="btnup float-left" type="submit" name="update" value="Update"> 
 							<?php } ?>
 							</form>
  								<button class="btnss float-right" >Cancel</button>
 						</div>
-
-
-
 	               </div>   
                </div>
-              
             </div>
-
-          
 <!-- ////////////////////////END OF UPDATE FORM\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+
+
 
 						<!-- UPDATE DIARY -->
 			<div class="col-md-8 compose-right" id="updateformd">
 					<div class="inbox-details-default">
 						<div class="inbox-details-heading">
-							Compose New Diary
+							Update Diary
 						</div>
 <?php
 $row=getDiaryByID($d);
@@ -345,6 +358,8 @@ if(exist!="")
     }
 
 }
+
+
 ////////////SWEET ALERT END///////////////
 
 
@@ -364,47 +379,50 @@ if(exist!="")
 
 
 	$(document).ready(function(){
-
   var shit = '<?php echo $story_id;?>';
-  
-
-
+  $(".viewhead").hide();
   $("#updateforms").hide();
   if(shit!="")
  {
-
  	$('.unread').hide();
     $("#updateforms").show();
-
  }
-
-
-
-
 $("#forms").hide();
 $("#updateformd").hide();
-
 $("#add").click(function(){
     $("#forms").show();
     $("#tab1").hide();
     $("#updateformd").hide();
-
 });
-
 $("#update").click(function(){
     $("#forms").hide();
     $("#tab1").hide();
   $("#updateforms").hide();
   $("#updateformd").show();
 });
-
-
 $(".btns").click(function(){
     $("#forms").hide();
     $("#tab1").show();
     $("#updateforms").hide();
  	$('.unread').show();
 });
+
+
+$(".checkbox").click(function(){
+
+    var legchecked = $('input[class^=checkbox]:checked').length;
+    
+    if(legchecked > 0)
+    {
+
+    	$('.deleteall').prop('hidden',false);
+    }
+    else
+    {
+    	$('.deleteall').prop('hidden',true);
+    }
+});
+
 
 
 $(".btnss").click(function(){
@@ -415,14 +433,18 @@ $(".btnss").click(function(){
         window.location.href = "story.php?r=<?php echo $r ?>&&d=<?php echo $d ?>";	
  	});
 
-
-    $(".clickable-row").click(function() {
-
+    $(".clickable-row").click(function() 
+    {	
        window.location = $(this).find('.create').next('input').val();	
     });
-
-
 	});
+
+
+
+
+
+
+
 </script>
 <!-- mother grid end here-->
 </body>

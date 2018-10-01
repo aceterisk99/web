@@ -31,17 +31,12 @@ include_once '../model/func.php';
 				<div class="header-main">
 					<div class="header-left">
 							<div class="logo-name">
-									 <a href="index.html"> <h1>Diary</h1> 
+									 <a href="index2.php"> <h1>Diary</h1> 
 									<!--<img id="logo" src="" alt="Logo"/>--> 
 								  </a> 								
 							</div>
 							<!--search-box-->
-								<div class="search-box">
-									<form>
-										<input type="text" placeholder="Search..." required="">	
-										<input type="submit" value="">					
-									</form>
-								</div><!--//end-search-box-->
+									
 							<div class="clearfix"> </div>
 						 </div>
 						 <div class="header-right">
@@ -127,7 +122,15 @@ include_once '../model/func.php';
 		<script src="js/jquery.nicescroll.js"></script>
 		<script src="js/scripts.js"></script>
 		<!--//scrolling js-->
-<script src="js/bootstrap.js"> </script>
+<script src="js/bootstrap.js"> 
+
+	$("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".portlet-grid").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+</script>
 <!-- mother grid end here-->
 </body>
 </html>                     

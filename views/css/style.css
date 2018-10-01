@@ -813,9 +813,10 @@ ul.dropdown-menu.drp-mnu li {
     padding: 0px;
 }
 /*--header strip end here-*/
+
 /*inner-block--*/
 .inner-block {
-    padding: 8em 2em 4em 2em;
+    padding: 5em 2em 2em 2em;
     background: #fafafa;
 }
 .market-update-block {
@@ -3880,14 +3881,7 @@ canvas#pie {
 .logo-name h1 {
     font-size: 2em;
 }
-.inner-block {
-    padding: 10em 2em 2em 2em;
-}
-.chart-layer1-left {
-    padding: 0em 0em 2em 0em;
-    float: none;
-    width: 100%;
-}
+
 canvas#bar {
     width: 500px !important;
 }
@@ -4058,9 +4052,7 @@ canvas#bar {
 .page-container {
     min-width: 480px;
 }
-.inner-block {
-    padding: 10em 1em 2em 1em;
-}
+
 .chit-chat-layer1 {
     margin: 1em 0em;
 }

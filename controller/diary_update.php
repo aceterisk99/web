@@ -1,6 +1,6 @@
 <?php
 include_once '../model/func.php';
-
+session_start();
 if(isset($_POST['update']))
 {
 	$diarytitle=trim($_POST['diarytitle']);

@@ -9,10 +9,11 @@
 							<!--search-box-->
 								<div class="search-box">
 									
-										<input type="text" id="myInput" placeholder="Search...">	
-													
-									
+										<input type="text" id="myInput" placeholder="Search...">	 
 								</div><!--//end-search-box-->
+								<!-- <div class="search-box">
+									<input type="date" id="myInput">
+								</div> -->
 							<div class="clearfix"> </div>
 						 </div>
 						 <div class="header-right">
